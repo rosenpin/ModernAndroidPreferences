@@ -16,6 +16,13 @@ abstract class AbstractChoiceDialogPreference(
 
     internal var selectionAdapter: SelectionAdapter? = null
 
+    /**
+     * Allows to override the summary, providing the current choice(s) as text when called.
+     *
+     * Summary falls back to [summary] or [summaryRes] when null is returned.
+     */
+    open var summaryProvider: (CharSequence?) -> CharSequence? = { null }
+
     init {
         require(items.isNotEmpty()) { "Supplied list of items may not be empty!" }
     }
